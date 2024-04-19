@@ -21,26 +21,23 @@ public class MemoController {
         this.memoService.createMemo(memo);
     }
 
-    @GetMapping("/memos/{user_id}")
-    public List<Memo> getAllMemoByUserId(@PathVariable String user_id) {
-        return this.memoService.getAllMemoByUserId(user_id);
+    @GetMapping("/memos")
+    public List<Memo> getAllMemoByUserId(@RequestHeader("userId") String userId) {
+        return this.memoService.getAllMemoByUserId(userId);
     }
 
-    @GetMapping("/memo/{memo_id}")
-    public Memo getMemoByMemoId(@PathVariable String memo_id, @RequestHeader HttpHeaders headers) {
-        String user_id = headers.getFirst(HttpHeaders.USER_AGENT);
-        return this.memoService.getMemoByMemoId(user_id, memo_id);
+    @GetMapping("/memo/{memoId}")
+    public Memo getMemoByMemoId(@PathVariable String memoId, @RequestHeader("userId") String userId) {
+        return this.memoService.getMemoByMemoId(userId, memoId);
     }
 
-    @DeleteMapping("/memo/{memo_id}")
-    public void deleteMemoByMemoId(@PathVariable String memo_id, @RequestHeader HttpHeaders headers) {
-        String user_id = headers.getFirst(HttpHeaders.USER_AGENT);
-        this.memoService.deleteMemoByMemoId(user_id, memo_id);
+    @DeleteMapping("/memo/{memoId}")
+    public void deleteMemoByMemoId(@PathVariable String memoId, @RequestHeader("userId") String userId) {
+        this.memoService.deleteMemoByMemoId(userId, memoId);
     }
 
-    @PatchMapping("/memo/{memo_id}")
-    public void updateMemoByMemoId(@PathVariable String memo_id, @RequestBody String content, @RequestHeader HttpHeaders headers) {
-        String user_id = headers.getFirst(HttpHeaders.USER_AGENT);
-        this.memoService.updateMemoByMemoId(user_id, memo_id, content);
+    @PatchMapping("/memo/{memoId}")
+    public void updateMemoByMemoId(@PathVariable String memoId, @RequestBody String content, @RequestHeader("userId") String userId) {
+        this.memoService.updateMemoByMemoId(userId, memoId, content);
     }
 }

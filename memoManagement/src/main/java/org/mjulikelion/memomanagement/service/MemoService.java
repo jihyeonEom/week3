@@ -17,19 +17,19 @@ public class MemoService {
         this.memoRepository.createMemo(memo);
     }
 
-    public List<Memo> getAllMemoByUserId(String user_id) {
-        return this.memoRepository.getAllMemoByUserId(user_id);
+    public List<Memo> getAllMemoByUserId(String userId) {
+        return this.memoRepository.getAllMemoByUserId(userId);
     }
 
-    public Memo getMemoByMemoId(String user_id, String memo_id) {
-        return this.memoRepository.getMemoByMemoId(user_id, memo_id);
+    public Memo getMemoByMemoId(String userId, String memoId) {
+        return this.memoRepository.getMemoByMemoId(userId, memoId);
     }
 
-    public void deleteMemoByMemoId(String user_id, String memo_id) {
-        this.memoRepository.deleteMemoByMemoId(user_id, memo_id);
+    public void deleteMemoByMemoId(String userId, String memoId) {
+        this.memoRepository.deleteMemoByMemoId(userId, memoId);
     }
 
-    public void updateMemoByMemoId(String user_id, String memo_id, String content) {
-        this.memoRepository.updateMemoByMemoId(user_id, memo_id, content);
+    public void updateMemoByMemoId(String userId, String memoId, String content) {
+        this.memoRepository.updateMemoByMemoId(userId, memoId, content);
     }
 }
