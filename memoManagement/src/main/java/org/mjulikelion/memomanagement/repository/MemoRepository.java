@@ -3,14 +3,11 @@ package org.mjulikelion.memomanagement.repository;
 import org.mjulikelion.memomanagement.Memo;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class MemoRepository {
-    private final Map<String, Memo> memos = new HashMap<>();
+    private final WeakHashMap<String, Memo> memos = new WeakHashMap<>();
 
     public void createMemo(Memo memo) {
         memos.put(memo.getId(), memo);
@@ -46,6 +43,8 @@ public class MemoRepository {
             if(memo.getId().equals(memoId)){
                 if(userId.equals(memo.getUserId())){
                     memos.remove(key);
+                    System.gc();
+                    System.out.println("Memo with id " + memoId + " removed");
                     return;
                 }
                 throw new IllegalArgumentException("User with id " + userId + " does not have access to memo with id " + memoId);

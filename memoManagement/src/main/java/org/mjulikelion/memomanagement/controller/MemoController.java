@@ -26,17 +26,17 @@ public class MemoController {
         return this.memoService.getAllMemoByUserId(userId);
     }
 
-    @GetMapping("/memo/{memoId}")
+    @GetMapping("/memos/{memoId}")
     public Memo getMemoByMemoId(@PathVariable String memoId, @RequestHeader("userId") String userId) {
         return this.memoService.getMemoByMemoId(userId, memoId);
     }
 
-    @DeleteMapping("/memo/{memoId}")
+    @DeleteMapping("/memos/{memoId}")
     public void deleteMemoByMemoId(@PathVariable String memoId, @RequestHeader("userId") String userId) {
         this.memoService.deleteMemoByMemoId(userId, memoId);
     }
 
-    @PatchMapping("/memo/{memoId}")
+    @PatchMapping("/memos/{memoId}")
     public void updateMemoByMemoId(@PathVariable String memoId, @RequestBody String content, @RequestHeader("userId") String userId) {
         this.memoService.updateMemoByMemoId(userId, memoId, content);
     }
